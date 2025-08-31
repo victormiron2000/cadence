@@ -29,6 +29,7 @@
 </style>
 </head>
 <body>
+<audio id="bgAudio" src="silence.wav" loop playsinline style="display:none"></audio>  
 <div class="wrap">
   <h1>Cadence Metronome</h1>
   <div class="card">
@@ -86,7 +87,7 @@
 if ('serviceWorker' in navigator) {
   const sw = `
     self.addEventListener('install', e => {
-      e.waitUntil(caches.open('cadence-v2').then(c=>c.addAll(['./'])));
+      e.waitUntil(caches.open('cadence-v2').then(c=>c.addAll(['./','silence.wav'])));
     });
     self.addEventListener('fetch', e => {
       e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));
